@@ -6,20 +6,18 @@ const ButtonSettings = (props) => {
     <View style={styles.item}>
       <TextInput
         style={styles.input}
-        placeholder={props.task.name}
+        placeholder={"Button Task"}
         //onChangeText={(text) => setInput(text)}
       />
       <View style={styles.hours}>
-        <Text style={styles.hoursText}>
-          hours today: {props.task.timeCount / 3600}
-        </Text>
+        <Text style={styles.hoursText}>hours today: 3 </Text>
       </View>
       <View style={styles.month}>
         <Text style={styles.monthText}>monthly hours: 5</Text>
       </View>
       <View style={styles.increase}>
         <Text style={styles.dailyIncrease}>daily increase</Text>
-        <Text style={styles.increaseMetric}>{props.task.delta}%</Text>
+        <Text style={styles.increaseMetric}>5%</Text>
       </View>
     </View>
   );

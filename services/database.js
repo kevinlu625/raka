@@ -6,43 +6,29 @@ const database = Firebase.database();
 
 export function getTodos(id, date, callback) {
   const reference = database.ref(
-    `users/${id}/todo/${date.toISOString().split("T")[0]}`
+    `users/${id}/todo/${date.toISOString().split("T")[0]}/todoItems`
   );
 
   reference.on("value", (snapshot) => {
-    const todoItems = [];
+    console.log(snapshot.val());
     if (snapshot.val()) {
-      console.log(snapshot.val().values());
-      snapshot
-        .val()
-        .values()
-        .forEach((item) => {
-          todoItems.append(item.name);
-        });
+      callback(snapshot.val());
+    } else {
+      callback([]);
     }
-    callback(todoItems);
   });
 }
 
 export function setTodos(id, items, date) {
-  items.forEach((item) => {
-    database
-      .ref(`users/${id}/todo/${date.toISOString().split("T")[0]}`)
-      .push()
-      .set({
-        name: item,
-        timeCount: 0,
-      });
-  });
-  // database
-  //   .ref(`users/${id}/todo/${date.toISOString().split("T")[0]}`)
-  //   .set({
-  //     todoItems: items,
-  //     count: items.length,
-  //   })
-  //   .then(() => {
-  //     console.log("set");
-  //   });
+  database
+    .ref(`users/${id}/todo/${date.toISOString().split("T")[0]}`)
+    .set({
+      todoItems: items,
+      count: items.length,
+    })
+    .then(() => {
+      console.log("set");
+    });
   console.log(id);
   console.log(items);
   console.log(date);
@@ -62,14 +48,4 @@ export function setUser(id, email) {
       console.log("hi");
     });
   console.log("User signed in!");
-}
-
-export function getTaskTime(id, date, task, callback) {
-  const reference = database.ref(
-    `users/${id}/todo/${date.toISOString().split("T")[0]}/`
-  );
-
-  reference.on("value", (snapshot) => {
-    callback(snapshot.val().find((item) => item.name === task));
-  });
 }
