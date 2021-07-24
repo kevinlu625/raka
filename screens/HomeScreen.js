@@ -99,6 +99,10 @@ export class HomeScreen extends React.Component {
     });
     // showMode("time");
   }
+  
+  componentDidMount() {
+    getTodos(this.props.user.uid, new Date(), this.setTaskItems);
+  }
 
   render() {
     return (
