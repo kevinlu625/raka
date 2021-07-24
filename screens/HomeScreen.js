@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Task from "../components/Task";
-import { getTodos, setTodos } from "../services/database";
+import { getTodos, addTodo, deleteTodo } from "../services/database";
+import { setStatusBarBackgroundColor } from "expo-status-bar";
 // import { user } from "./App.js";
 
 export class HomeScreen extends React.Component {
@@ -50,7 +51,7 @@ export class HomeScreen extends React.Component {
       taskItems: [...this.state.taskItems, this.state.task],
       task: null,
     });
-    setTodos(
+    addTodo(
       this.props.user.uid,
       [...this.state.taskItems, this.state.task],
       this.state.date
@@ -63,7 +64,7 @@ export class HomeScreen extends React.Component {
     this.setState({
       taskItems: itemsCopy,
     });
-    setTodos(this.props.user.uid, itemsCopy, this.state.date);
+    deleteTodo(this.props.user.uid, itemsCopy, this.state.date);
   }
 
   onChange(event, selectedDate) {
