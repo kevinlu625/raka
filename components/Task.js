@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 20,
+    borderColor: "#f9933f",
+    borderWidth: 2,
   },
   itemLeft: {
     flexDirection: "row",
@@ -31,8 +33,8 @@ const styles = StyleSheet.create({
   square: {
     width: 24,
     height: 24,
-    backgroundColor: "#55BCF6",
-    opacity: 0.4,
+    backgroundColor: "#f9933f",
+    opacity: 0.8,
     borderRadius: 5,
     marginRight: 15,
   },
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   circular: {
     width: 12,
     height: 12,
-    borderColor: "#55BCF6",
+    borderColor: "#f9933f",
     borderWidth: 2,
     borderRadius: 5,
   },

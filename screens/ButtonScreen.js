@@ -17,7 +17,7 @@ export function ButtonScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.buttonWrapper}>
-        <Text style={styles.sectionTitle}>button settings</Text>
+        <Text style={styles.sectionTitle}>Button Settings</Text>
       </View>
       <View style={styles.items}>
         <ButtonSettings />
@@ -31,7 +31,7 @@ export function ButtonScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ECC1C1",
+    backgroundColor: "#ffbf8b",
   },
   buttonWrapper: {
     paddingTop: 80,

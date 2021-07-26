@@ -70,7 +70,7 @@ export class HomeScreen extends React.Component {
   onChange(event, selectedDate) {
     const currentDate = selectedDate || this.state.date;
     getTodos(this.props.user.uid, currentDate, this.setTaskItems);
-    // setShow(Platform.OS === "ios");
+    setShow(Platform.OS === "ios");
     this.setState({
       show: Platform.OS === "ios",
       date: currentDate,
@@ -100,7 +100,7 @@ export class HomeScreen extends React.Component {
     });
     // showMode("time");
   }
-  
+
   componentDidMount() {
     getTodos(this.props.user.uid, new Date(), this.setTaskItems);
   }
@@ -118,7 +118,7 @@ export class HomeScreen extends React.Component {
             onChange={this.onChange}
           />
         </View>
-        <Text style={styles.sectionTitle}>today's tasks</Text>
+        <Text style={styles.sectionTitle}>Today's Tasks</Text>
 
         {/* Added this scroll view to enable scrolling when list gets longer than the page */}
         <ScrollView
@@ -171,15 +171,16 @@ export class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E8EAED",
+    backgroundColor: "white",
   },
   TitleDatePicker: {
-    marginTop: 70,
-    marginLeft: 100,
+    marginTop: 80,
+    marginLeft: 20,
+    marginBottom: 20,
   },
   datePicker: {
     marginTop: 70,
-    marginLeft: 250,
+    marginLeft: 50,
   },
   tasksWrapper: {
     paddingTop: 0,
@@ -189,6 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginLeft: 20,
+    color: "black",
   },
   items: {
     marginTop: 30,
@@ -206,8 +208,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: "#FFF",
     borderRadius: 60,
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
+    borderColor: "#f9933f",
+    borderWidth: 2,
     width: 250,
   },
   addWrapper: {
@@ -217,8 +219,8 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
+    borderColor: "#f9933f",
+    borderWidth: 2,
   },
   addText: {},
 });

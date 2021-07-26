@@ -29,7 +29,8 @@ export function login(username, password) {
   auth
     .signInWithEmailAndPassword(username, password)
     .then((userCredential) => {
-      setUser(userCredential.user.uid, userCredential.user.email);
+      // getTodos(this.props.user.uid, currentDate, this.setTaskItems);
+      // setUser(userCredential.user.uid, userCredential.user.email);
     })
     .catch((error) => {
       console.log(error);
