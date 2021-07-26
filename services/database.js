@@ -1,5 +1,4 @@
 import * as firebase from "firebase";
-// import database from "@react-native-firebase/database";
 import Firebase from "./Firebase";
 
 const database = Firebase.database();
@@ -10,7 +9,6 @@ export function getTodos(id, date, callback) {
   );
 
   reference.on("value", (snapshot) => {
-    console.log(snapshot.val());
     if (snapshot.val()) {
       callback(snapshot.val());
     } else {
@@ -27,16 +25,8 @@ export function addTodo(id, items, date) {
       todo: items.length,
     })
     .then(() => {
-      console.log("set");
       updatePercentage(id, date);
     });
-  console.log(id);
-  console.log(items);
-  console.log(date);
-
-  // reference.on("value", (snapshot) => {
-  //   console.log("Todo tasks: ", snapshot.val());
-  // });
 }
 
 export function deleteTodo(id, items, date) {
@@ -48,21 +38,24 @@ export function deleteTodo(id, items, date) {
       completed: firebase.database.ServerValue.increment(1),
     })
     .then(() => {
-      console.log("set");
       updatePercentage(id, date);
     });
 }
 
 export function setUser(id, email) {
+  database.ref(`test`).set(null);
   database
     .ref(`users/${id}`)
     .set({
       email,
+      buttons: {
+        button1: {key: "button1", name: "Button 1", timeLogged: 0},
+        button2: {key: "button2", name: "Button 2", timeLogged: 0},
+        button3: {key: "button3", name: "Button 3", timeLogged: 0},
+      },
     })
     .then(() => {
-      console.log("hi");
     });
-  console.log("User signed in!");
 }
 
 export function updatePercentage(id, date) {
@@ -74,9 +67,19 @@ export function updatePercentage(id, date) {
     database.ref(`users/${id}/todo/${date.toISOString().split("T")[0]}`).update({
       percentage: completed / (completed + todo) * 100 || 0,
     });
-    console.log(snapshot.val().completed);
   });
-  
-  
-  
+}
+
+export function getButtons(id, callback) {
+  const reference = database.ref(`users/${id}/buttons/`);
+
+  reference.on("value", (snapshot) => {
+    if (snapshot.val()) {
+      callback(snapshot.val());
+    }
+  });
+}
+
+export function setButtonName(id, key, buttonName) {
+  database.ref(`users/${id}/buttons/${key}`).update({name: buttonName});
 }

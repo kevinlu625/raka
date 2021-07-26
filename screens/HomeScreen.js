@@ -12,18 +12,10 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Task from "../components/Task";
 import { getTodos, addTodo, deleteTodo } from "../services/database";
-import { setStatusBarBackgroundColor } from "expo-status-bar";
-// import { user } from "./App.js";
 
 export class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-
-    // const [task, setTask] = useState();
-    // const [taskItems, setTaskItems] = useState([]);
-    // const [date, setDate] = useState(new Date());
-    // const [mode, setMode] = useState("date");
-    // const [show, setShow] = useState(false);
 
     this.state = {
       task: "",
@@ -35,8 +27,6 @@ export class HomeScreen extends React.Component {
 
     this.setTaskItems = this.setTaskItems.bind(this);
     this.onChange = this.onChange.bind(this);
-
-    // getTodos(this.props.user.uid, new Date(), this.setTaskItems);
   }
 
   setTaskItems(taskItems) {
@@ -75,7 +65,6 @@ export class HomeScreen extends React.Component {
       show: Platform.OS === "ios",
       date: currentDate,
     });
-    // setDate(currentDate);
   }
 
   showMode(currentMode) {
@@ -83,22 +72,18 @@ export class HomeScreen extends React.Component {
       show: true,
       mode: currentMode,
     });
-    // setShow(true);
-    // setMode(currentMode);
   }
 
   showDatepicker() {
     this.setState({
       mode: "date",
     });
-    // showMode("date");
   }
 
   showTimepicker() {
     this.setState({
       mode: "time",
     });
-    // showMode("time");
   }
 
   componentDidMount() {
@@ -224,5 +209,3 @@ const styles = StyleSheet.create({
   },
   addText: {},
 });
-
-// export default HomeScreen;

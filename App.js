@@ -4,12 +4,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { ButtonScreen } from "./screens/ButtonScreen";
 import { LoginScreen } from "./screens/LoginScreen";
 import { login, logout } from "./services/auth";
-//import { getTodos, setTodos } from "./services/database";
-
-// import auth from "@react-native-firebase/auth";
 import Firebase from "./services/Firebase";
-// import { getTodos } from "./services/database";
-import ButtonSettings from "./components/ButtonSettings";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -17,14 +12,11 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
-//firebase.initializeApp(firebaseConfig);
-//firebase.analytics();
 const auth = Firebase.auth();
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  // firebase.analytics();
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
@@ -44,9 +36,7 @@ export default function App() {
 
   if (initializing) return null;
 
-  // const showLogin = false;
   const clickSignUp = () => {
-    console.log("showLogin");
     login("mtsiraka@gmail.com", "raka1234");
   };
 
@@ -66,10 +56,8 @@ export default function App() {
       </DrawerContentScrollView>
     );
   }
-
+  
   if (user) {
-    console.log(user.uid);
-    // getTodos(props.user.uid, new Date(), setTaskItems);
     return (
       <NavigationContainer>
         <Drawer.Navigator
@@ -79,7 +67,7 @@ export default function App() {
             name="HomeScreen"
             component={() => <HomeScreen {...props} />}
           />
-          <Drawer.Screen name="ButtonScreen" component={ButtonScreen} />
+          <Drawer.Screen name="ButtonScreen" component={() => <ButtonScreen {...props} />} />
         </Drawer.Navigator>
       </NavigationContainer>
     );

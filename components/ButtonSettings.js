@@ -1,26 +1,45 @@
+import { min } from "moment";
 import React from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
+import { setButtonName } from "../services/database";
 
-const ButtonSettings = (props) => {
-  return (
-    <View style={styles.item}>
-      <TextInput
-        style={styles.input}
-        placeholder={"Button Task"}
-        //onChangeText={(text) => setInput(text)}
-      />
-      <View style={styles.hours}>
-        <Text style={styles.hoursText}>hours today: 3 </Text>
+export class ButtonSettings extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: this.props.button.name,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.button.name,
+    });
+  } 
+  render() {
+    return (
+      <View style={styles.item}>
+        <TextInput
+          style={styles.input}
+          value={this.state.name || null}
+          placeholder={"Button Task"}
+          onChangeText={((text) => this.setState({name: text}))}
+          onSubmitEditing={(event) => setButtonName(this.props.user.uid, this.props.button.key, event.nativeEvent.text)}
+        />
+        <View style={styles.hours}>
+          <Text style={styles.hoursText}>Hours today: {this.props.button.timeLogged} </Text>
+        </View>
+        <View style={styles.month}>
+          <Text style={styles.monthText}>monthly hours: 5</Text>
+        </View>
+        <View style={styles.increase}>
+          <Text style={styles.dailyIncrease}>daily increase</Text>
+          <Text style={styles.increaseMetric}>5%</Text>
+        </View>
       </View>
-      <View style={styles.month}>
-        <Text style={styles.monthText}>monthly hours: 5</Text>
-      </View>
-      <View style={styles.increase}>
-        <Text style={styles.dailyIncrease}>daily increase</Text>
-        <Text style={styles.increaseMetric}>5%</Text>
-      </View>
-    </View>
-  );
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -40,14 +59,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     marginTop: -15,
     marginLeft: -15,
-    //borderColor: "#dbd7d8",
-    //borderWidth: 0.5,
   },
   hours: {
     width: 186,
     height: 24,
     backgroundColor: "#FFF",
-    //opacity: 0.4,
     borderRadius: 5,
     marginTop: 10,
     paddingLeft: 10,
@@ -62,7 +78,6 @@ const styles = StyleSheet.create({
     width: 186,
     height: 24,
     backgroundColor: "#FFF",
-    //opacity: 0.4,
     borderRadius: 5,
     marginTop: 10,
     paddingLeft: 10,
@@ -77,7 +92,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 95,
     backgroundColor: "#FFF",
-    //opacity: 0.4,
     borderRadius: 5,
     marginTop: -93,
     paddingLeft: 10,
