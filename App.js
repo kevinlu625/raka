@@ -52,7 +52,7 @@ export default function App() {
     return (
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
-        <DrawerItem label="log out" onPress={() => logout()} />
+        <DrawerItem label="Logout" onPress={() => logout()} />
       </DrawerContentScrollView>
     );
   }
@@ -64,10 +64,10 @@ export default function App() {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen
-            name="HomeScreen"
+            name="Home"
             component={() => <HomeScreen {...props} />}
           />
-          <Drawer.Screen name="ButtonScreen" component={() => <ButtonScreen {...props} />} />
+          <Drawer.Screen name="Buttons" component={() => <ButtonScreen {...props} />} />
         </Drawer.Navigator>
       </NavigationContainer>
     );

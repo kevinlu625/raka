@@ -60,7 +60,6 @@ export class HomeScreen extends React.Component {
   onChange(event, selectedDate) {
     const currentDate = selectedDate || this.state.date;
     getTodos(this.props.user.uid, currentDate, this.setTaskItems);
-    setShow(Platform.OS === "ios");
     this.setState({
       show: Platform.OS === "ios",
       date: currentDate,
