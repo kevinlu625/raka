@@ -28,7 +28,7 @@ export class ButtonSettings extends React.Component {
           onSubmitEditing={(event) => setButtonName(this.props.user.uid, this.props.button.key, event.nativeEvent.text)}
         />
         <View style={styles.hours}>
-          <Text style={styles.hoursText}>Hours today: {this.props.button.timeLogged} </Text>
+          <Text style={styles.hoursText}>Seconds today: {this.props.button.timeLogged} </Text>
         </View>
         <View style={styles.month}>
           <Text style={styles.monthText}>monthly hours: 5</Text>
