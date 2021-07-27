@@ -25,9 +25,6 @@ export function signUp(email, password) {
 export function login(username, password) {
   auth
     .signInWithEmailAndPassword(username, password)
-    .then((userCredential) => {
-      setUser(userCredential.user.uid, userCredential.user.email);
-    })
     .catch((error) => {
       console.log(error);
     });
